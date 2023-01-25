@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Container, Card, Button } from "react-bootstrap";
+import { Container, Card, Button, Dropdown } from "react-bootstrap";
 import { BsFillCameraFill } from "react-icons/bs";
 import { SiCampaignmonitor } from "react-icons/si";
 import SecondSection from "../MainProfile/SecondSection";
@@ -57,7 +57,25 @@ export default function MainProfile() {
                   <div className="profile-buttons">
                     <Button className="btn-1">Open to</Button>
                     <Button className="btn-2">Add profile Section</Button>
-                    <Button className="btn-3">more</Button>
+                    <Dropdown>
+                      <Dropdown.Toggle className="btn-3" id="dropdown-basic">
+                        More
+                      </Dropdown.Toggle>
+
+                      <Dropdown.Menu>
+                        <Dropdown.Item
+                          href={`${process.env.REACT_APP_BE_PROD_URL}/users/${process.env.REACT_APP_PROFILE_ID}/CV`}
+                        >
+                          Build a CV
+                        </Dropdown.Item>
+                        <Dropdown.Item href="#/action-2">
+                          Save to PDF
+                        </Dropdown.Item>
+                        <Dropdown.Item href="#/action-3">
+                          Send Profile in a message
+                        </Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
                   </div>
                   <JobPreferencesModal />
                 </div>
