@@ -87,7 +87,7 @@ export default function Experience() {
             <Container fluid>
               <ListGroup variant="flush">
                 {experiences &&
-                  experiences.map((i) => (
+                  experiences.experiences.map((i) => (
                     <ExperienceCard data={i} id={i._id} key={i._id} />
                   ))}
               </ListGroup>

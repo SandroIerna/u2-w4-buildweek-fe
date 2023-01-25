@@ -195,9 +195,7 @@ export const getExperienceAction = (userid) => {
   return async (dispatch, getState) => {
     try {
       let response = await fetch(
-        "https://striveschool-api.herokuapp.com/api/profile/" +
-          userid +
-          "/experiences/",
+        process.env.REACT_APP_URL + "/63ce8aa4e2adac708d6585d8/experiences",
         options
       );
       if (response.ok) {
@@ -219,9 +217,7 @@ export const getExperienceOtherAction = (userid) => {
   return async (dispatch, getState) => {
     try {
       let response = await fetch(
-        "https://striveschool-api.herokuapp.com/api/profile/" +
-          userid +
-          "/experiences/",
+        process.env.REACT_APP_URL + "/63ce8aa4e2adac708d6585d8/experiences",
         options
       );
       if (response.ok) {
@@ -251,10 +247,9 @@ export const postExperienceAction = (experience, userid) => {
   };
   return async (dispatch) => {
     try {
+      console.log(process.env.REACT_APP_URL);
       let response = await fetch(
-        "https://striveschool-api.herokuapp.com/api/profile/" +
-          userid +
-          "/experiences/",
+        process.env.REACT_APP_URL + "/63ce8aa4e2adac708d6585d8/experiences",
         optionsPost
       );
       if (response.ok) {
