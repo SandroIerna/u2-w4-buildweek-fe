@@ -57,16 +57,12 @@ export const updateProfile = (changeVaules) => {
     method: "PUT",
     body: JSON.stringify(changeVaules),
 
-    headers: {
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2QwZTMzZjZiNTdkYjAwMTVjMTFlOGQiLCJpYXQiOjE2NzQ2MzQwNDgsImV4cCI6MTY3NTg0MzY0OH0.j_R__Lzp4ztHISB2sb3Ih-woHNCs40Q5O6NI6Padi9g",
-      "Content-Type": "application/json",
-    },
+    headers: { "Content-Type": "application/json" },
   };
   return async (dispatch) => {
     try {
       let response = await fetch(
-        "https://striveschool-api.herokuapp.com/api/profile",
+        `${process.env.REACT_APP_BE_PROD_URL}/users/${process.env.REACT_APP_PROFILE_ID}`,
         option
       );
       if (response.ok) {
@@ -80,7 +76,7 @@ export const updateProfile = (changeVaules) => {
   };
 };
 
-export const retrieveDataActionTop = (endpoint, headers) => {
+export const retrieveDataActionTop = (endpoint) => {
   const getRandom = (arr, num) => {
     const shuffled = [...arr].sort(() => 0.5 - Math.random());
     return shuffled.slice(0, num);
@@ -88,14 +84,10 @@ export const retrieveDataActionTop = (endpoint, headers) => {
 
   return async (dispatch, getState) => {
     try {
-      let response = await fetch(endpoint, headers, {
-        headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Mzk2ZjU1N2M5NmRmYjAwMTUyMWE1YmYiLCJpYXQiOjE2NzA4Mzc1OTEsImV4cCI6MTY3MjA0NzE5MX0.sionel4q5K1g2fRqRfazPcioEsiTmI5SAxk9wfavbhQ",
-        },
-      });
-      let fetchedData = await response.json();
+      let response = await fetch(endpoint);
+
       if (response.ok) {
+        let fetchedData = await response.json();
         dispatch({
           type: GET_PEOPLE_DATA_TOP,
           payload: getRandom(fetchedData, 6),
@@ -109,7 +101,7 @@ export const retrieveDataActionTop = (endpoint, headers) => {
   };
 };
 
-export const retrieveDataActionBottom = (endpoint, headers) => {
+export const retrieveDataActionBottom = (endpoint) => {
   const getRandom = (arr, num) => {
     const shuffled = [...arr].sort(() => 0.5 - Math.random());
     return shuffled.slice(0, num);
@@ -117,12 +109,7 @@ export const retrieveDataActionBottom = (endpoint, headers) => {
 
   return async (dispatch, getState) => {
     try {
-      let response = await fetch(endpoint, headers, {
-        headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Mzk2ZjU1N2M5NmRmYjAwMTUyMWE1YmYiLCJpYXQiOjE2NzA4Mzc1OTEsImV4cCI6MTY3MjA0NzE5MX0.sionel4q5K1g2fRqRfazPcioEsiTmI5SAxk9wfavbhQ",
-        },
-      });
+      let response = await fetch(endpoint);
       let fetchedData = await response.json();
       if (response.ok) {
         dispatch({
@@ -145,11 +132,12 @@ const options = {
       "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2QwZTMzZjZiNTdkYjAwMTVjMTFlOGQiLCJpYXQiOjE2NzQ2MzQwNDgsImV4cCI6MTY3NTg0MzY0OH0.j_R__Lzp4ztHISB2sb3Ih-woHNCs40Q5O6NI6Padi9g",
   },
 };
+
 export const getProfile = () => {
   return async (dispatch, getState) => {
     try {
       let response = await fetch(
-        "https://striveschool-api.herokuapp.com/api/profile/me",
+        `${process.env.REACT_APP_BE_PROD_URL}/users/${process.env.REACT_APP_PROFILE_ID}`,
         options
       );
       if (response.ok) {
@@ -172,7 +160,7 @@ export const getOtherProfile = (userid) => {
   return async (dispatch, getState) => {
     try {
       let response = await fetch(
-        "https://striveschool-api.herokuapp.com/api/profile/" + userid,
+        `${process.env.REACT_APP_BE_PROD_URL}/users/` + userid,
         options
       );
       if (response.ok) {

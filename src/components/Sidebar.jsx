@@ -9,18 +9,12 @@ const Sidebar = () => {
   const [show, setToShow] = useState(false);
   // const [random, setRandom] = useState([]);
   const dispatch = useDispatch();
-  const people = useSelector((state) => state.people.top)
+  const people = useSelector((state) => state.people.top);
 
-  const endpoint = "https://striveschool-api.herokuapp.com/api/profile/";
-  const headers = {
-    headers: {
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Mzk2ZjU1N2M5NmRmYjAwMTUyMWE1YmYiLCJpYXQiOjE2NzA4Mzc1OTEsImV4cCI6MTY3MjA0NzE5MX0.sionel4q5K1g2fRqRfazPcioEsiTmI5SAxk9wfavbhQ",
-    },
-  };
+  const endpoint = `${process.env.REACT_APP_BE_PROD_URL}/users`;
 
   useEffect(() => {
-    dispatch(retrieveDataActionTop(endpoint, headers));
+    dispatch(retrieveDataActionTop(endpoint));
     setTimeout(() => {
       setToShow(true);
     }, 300);
@@ -51,9 +45,17 @@ const Sidebar = () => {
     <>
       <h4 className="mt-3">People also follow</h4>
       <ListGroup variant="flush" className="">
-        {show && people.map((i)=> (
-          <PeopleCards key={i._id} userid={i._id} name={i.name} location={i.area} title={i.title} image={i.image}/>
-        ))}
+        {show &&
+          people.map((i) => (
+            <PeopleCards
+              key={i._id}
+              userid={i._id}
+              name={i.name}
+              location={i.area}
+              title={i.title}
+              image={i.image}
+            />
+          ))}
       </ListGroup>
     </>
   );
