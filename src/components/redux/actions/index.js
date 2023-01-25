@@ -12,8 +12,6 @@ export const MAKE_POST = "MAKE_POST";
 export const getPostsAction = () => {
   const options = {
     headers: {
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2QwZTMzZjZiNTdkYjAwMTVjMTFlOGQiLCJpYXQiOjE2NzQ2MzQwNDgsImV4cCI6MTY3NTg0MzY0OH0.j_R__Lzp4ztHISB2sb3Ih-woHNCs40Q5O6NI6Padi9g",
       "Content-Type": "application/json",
     },
   };
@@ -23,10 +21,7 @@ export const getPostsAction = () => {
         type: "LOADING",
         payload: true,
       });
-      let response = await fetch(
-        "https://striveschool-api.herokuapp.com/api/posts/",
-        options
-      );
+      let response = await fetch("http://localhost:3001/posts/", options);
       let fetchedData = await response.json();
       if (response.ok) {
         dispatch({
