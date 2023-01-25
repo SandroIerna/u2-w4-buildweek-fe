@@ -24,6 +24,7 @@ const AddingPost = () => {
 
   const postToSend = {
     text: post,
+    user: "63cfca0b8706ad88894f4b89",
   };
 
   const onChangeHandler = (value, fieldToSet) => {
