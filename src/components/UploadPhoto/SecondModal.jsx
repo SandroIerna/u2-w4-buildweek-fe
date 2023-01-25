@@ -15,20 +15,16 @@ function SecondModal() {
   const uploadImage = async (e) => {
     e.preventDefault();
     const data = new FormData();
-    data.append("profile", showImage);
+    data.append("image", showImage);
 
     const options = {
       method: "POST",
       body: data,
-      headers: {
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Mzk2Zjk2NGM5NmRmYjAwMTUyMWE1YzAiLCJpYXQiOjE2NzA4Mzg2MjgsImV4cCI6MTY3MjA0ODIyOH0.S8B9Q1xNG-Qhgqc_VaASpoD_zvjiPjV0ZU2__qRPBEI",
-      },
     };
 
     try {
       let response = await fetch(
-        "https://striveschool-api.herokuapp.com/api/profile/6396f964c96dfb001521a5c0/picture",
+        `${process.env.REACT_APP_BE_PROD_URL}/users/${process.env.REACT_APP_PROFILE_ID}/picture`,
         options
       );
       if (response.ok) {
