@@ -1,0 +1,166 @@
+.profile-card-container {
+  /* width: 16rem; */
+  border-radius: 40px;
+}
+.profile-card-2 {
+  /* width: 16rem; */
+}
+.name-link {
+  color: black;
+}
+.name-link:hover {
+  text-decoration: underline;
+  color: black;
+}
+.homepage-profile {
+  background-color: #a0b3b6;
+  height: 70px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+.homepage-pic {
+  width: 72px;
+  height: 72px;
+  box-sizing: border-box;
+  background-clip: content-box;
+  border: 1px solid transparent;
+  border-radius: 49.9%;
+  margin-bottom: -50px;
+  border: 2px solid white;
+  cursor: pointer;
+}
+.homeprofile-name {
+  font-size: 16px;
+}
+.icons {
+  font-size: 1.5rem;
+}
+.grow-network {
+  font-size: 12px;
+  font-weight: bold;
+}
+.connection {
+  color: #5e5e5e;
+}
+.connection-number {
+  color: #0c66c2;
+  cursor: pointer;
+}
+.underline {
+  text-decoration: underline;
+  color: black;
+  font-size: 16px;
+  cursor: pointer;
+}
+.homepage-h3 {
+  font-size: 12px;
+  cursor: pointer;
+}
+.my-items {
+  display: flex;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.discover-span {
+  color: #0c66c2;
+  font-size: 16px;
+  cursor: pointer;
+}
+.discover-event {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+.discover-btn {
+  border: none;
+  background-color: white;
+  color: gray;
+  cursor: pointer;
+}
+.discover-btn:hover {
+  border-radius: 50%;
+  background-color: gray;
+}
+.text-center {
+  color: #666666;
+  cursor: pointer;
+  font-size: 16px;
+}
+.left-side-btn {
+  background-color: white;
+  color: #666666;
+  border: none;
+  display: flex;
+  align-items: center;
+}
+.rightside-image {
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  padding: 10px;
+}
+.right-profile {
+  display: flex;
+  align-items: center;
+  padding-inline: 10px;
+}
+.footer {
+  width: 18rem;
+}
+.sidebar-footer {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+}
+.sidebar-footer a {
+  color: #666666;
+}
+.corporation {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  margin-left: 38px;
+  font-size: 12px;
+}
+.corporation-image {
+  width: 70px;
+}
+.modal-button {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+.rightside-ul {
+  font-weight: bold;
+  font-size: 14px;
+}
+.rightside-h2 {
+  font-size: 12px;
+  color: #666666;
+}
+.righthome-image {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
+.righthome-imag {
+  width: 80px;
+  height: 80px;
+}
+.follow-btn {
+  background-color: white;
+  border-color: #0c66c2;
+  color: #0c66c2;
+  border-radius: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
