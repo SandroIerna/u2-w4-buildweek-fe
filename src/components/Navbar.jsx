@@ -28,25 +28,17 @@ const NavbarLinked = () => {
 
   useEffect(() => {
     saveData();
-  }, []);
-
-  const headers = {
-    headers: {
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Mzk3MDFiNGM5NmRmYjAwMTUyMWE1YzYiLCJpYXQiOjE2NzA4NDA3NTcsImV4cCI6MTY3MjA1MDM1N30.T5hB8KIIR6yohMzGajhbb-YdZ8l99w7-m-ASjfU4Jyc",
-    },
-  };
+  }, [searchQuery]);
 
   const saveData = async () => {
     try {
       const response = await fetch(
-        "https://striveschool-api.herokuapp.com/api/profile/",
-        headers
+        `${process.env.REACT_APP_BE_PROD_URL}/users/?name=/^${searchQuery}/i&limit=5`
       );
       if (response.ok) {
         let data = await response.json();
         setProfiles(data);
-        console.log(data);
+        console.log("profiles:", data);
       }
     } catch (e) {
       console.log(e);
@@ -103,14 +95,19 @@ const NavbarLinked = () => {
                   {profiles
                     .filter((n) => n.name.toLowerCase().includes(searchQuery))
                     .map((elements) => (
-                      <EachProfile
-                        style={{
-                          marginLeft: "20px",
-                          fontWeight: "bold",
-                          zIndex: "20",
-                        }}
-                        profile={elements}
-                      />
+                      <Link
+                        to={"/profile/" + elements._id}
+                        onClick={handleClick}
+                      >
+                        <EachProfile
+                          style={{
+                            marginLeft: "20px",
+                            fontWeight: "bold",
+                            zIndex: "20",
+                          }}
+                          profile={elements}
+                        />
+                      </Link>
                     ))}
                 </div>
               </div>
