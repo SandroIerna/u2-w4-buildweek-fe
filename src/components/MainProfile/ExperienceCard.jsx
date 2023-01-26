@@ -31,6 +31,21 @@ const ExperienceCard = (props) => {
   console.log(props.data.user_id);
   useEffect(() => {}, []);
 
+  const getCSVFile = async (experienceId) => {
+    try {
+      let response = await fetch(
+        process.env.REACT_APP_BE_PROD_URL +
+          `/users/${userID}/experiences/${experienceId}/csv`
+      );
+      if (response.ok) {
+      } else {
+        console.log("error fetching experiences");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <Container fluid>
@@ -65,14 +80,25 @@ const ExperienceCard = (props) => {
           </Card.Body>
           <Card.Footer>
             {user._id === props.data.user_id ? (
-              <Button
-                variant="danger"
-                onClick={() => {
-                  dispatch(deleteExperienceAction(props.data._id, userID));
-                }}
-              >
-                Remove
-              </Button>
+              <>
+                <Button
+                  variant="danger"
+                  onClick={() => {
+                    dispatch(deleteExperienceAction(props.data._id, userID));
+                  }}
+                >
+                  Remove
+                </Button>
+                <Button
+                  variant="secondary"
+                  onClick={() => {
+                    getCSVFile();
+                    console.log("hi");
+                  }}
+                >
+                  Download CSV
+                </Button>
+              </>
             ) : (
               ""
             )}
