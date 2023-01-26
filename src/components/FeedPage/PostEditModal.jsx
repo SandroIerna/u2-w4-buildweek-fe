@@ -34,15 +34,12 @@ const PostEditModal = (props) => {
     const options = {
       method: "POST",
       body: postimage,
-      headers: {
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Mzk2Zjk2NGM5NmRmYjAwMTUyMWE1YzAiLCJpYXQiOjE2NzA4Mzg2MjgsImV4cCI6MTY3MjA0ODIyOH0.S8B9Q1xNG-Qhgqc_VaASpoD_zvjiPjV0ZU2__qRPBEI",
-      },
+      headers: {},
     };
 
     try {
       let response = await fetch(
-        `https://striveschool-api.herokuapp.com/api/posts/${postid}`,
+        `https://localhost:3001/post/${postid}`,
         options
       );
       if (response.ok) {

@@ -8,7 +8,9 @@ export const EDIT_PROFILE = "EDIT_PROFILE";
 export const GET_POST_DATA = "GET_POST_DATA";
 export const GET_EXPERIENCE_DETAILS_OTHER = "GET_EXPERIENCE_DETAILS_OTHER";
 export const MAKE_POST = "MAKE_POST";
+
 const { REACT_APP_BE_PROD_URL } = process.env;
+const { REACT_APP_POST_ID } = process.env;
 export const getPostsAction = () => {
   const options = {
     headers: {
@@ -364,15 +366,12 @@ export const makePostAction = (data, userid) => {
 export const deletePostAction = (postid) => {
   const options = {
     method: "DELETE",
-    headers: {
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2QwZTMzZjZiNTdkYjAwMTVjMTFlOGQiLCJpYXQiOjE2NzQ2MzQwNDgsImV4cCI6MTY3NTg0MzY0OH0.j_R__Lzp4ztHISB2sb3Ih-woHNCs40Q5O6NI6Padi9g",
-    },
+    headers: {},
   };
   return async (dispatch) => {
     try {
       let response = await fetch(
-        "https://striveschool-api.herokuapp.com/api/posts/" + postid,
+        `http://localhost:3001/post/${postid}`,
         options
       );
       if (response.ok) {
@@ -392,15 +391,13 @@ export const editPostAction = (postid, data) => {
     method: "PUT",
     body: JSON.stringify(data),
     headers: {
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2QwZTMzZjZiNTdkYjAwMTVjMTFlOGQiLCJpYXQiOjE2NzQ2MzQwNDgsImV4cCI6MTY3NTg0MzY0OH0.j_R__Lzp4ztHISB2sb3Ih-woHNCs40Q5O6NI6Padi9g",
       "Content-Type": "application/json",
     },
   };
   return async (dispatch) => {
     try {
       let response = await fetch(
-        "https://striveschool-api.herokuapp.com/api/posts/" + postid,
+        `http://localhost:3001/post/${postid}`,
         options
       );
       if (response.ok) {
