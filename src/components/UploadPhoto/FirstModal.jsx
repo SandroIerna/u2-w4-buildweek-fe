@@ -21,6 +21,7 @@ function FirstModal() {
           onClick={() => setLgShow(true)}
         />
       </div>
+
       <Modal
         size="lg"
         show={lgShow}
