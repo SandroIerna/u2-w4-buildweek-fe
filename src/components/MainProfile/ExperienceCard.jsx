@@ -1,6 +1,10 @@
 import { Container, Card, Button, Modal, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteExperienceAction, editExperienceAction, getExperienceEdit } from "../redux/actions";
+import {
+  deleteExperienceAction,
+  editExperienceAction,
+  getExperienceEdit,
+} from "../redux/actions";
 import { BiPencil } from "react-icons/bi";
 import { useEffect, useState } from "react";
 import EditModal from "./EditExperienceModal";
@@ -12,13 +16,13 @@ const ExperienceCard = (props) => {
   const user = useSelector((state) => state.profile.profilename);
   const userID = user._id;
   const [show, setShow] = useState(false);
-  const [modal, setModal] = useState(false)
+  const [modal, setModal] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const closeModal = () => setModal(false)
-  const showModal = () => setModal(true)
+  const closeModal = () => setModal(false);
+  const showModal = () => setModal(true);
 
   const [details, setDetails] = useState([]);
 
@@ -35,10 +39,13 @@ const ExperienceCard = (props) => {
               <span className="font-weight-bold" style={{ fontSize: "25px" }}>
                 {props.data.role}
                 {user.username === props.data.username ? (
-                  <BiPencil onClick={() => {
-                    showModal()
-                    dispatch(getExperienceEdit(props.data._id, userID))
-                  }} className="experice-icon" />
+                  <BiPencil
+                    onClick={() => {
+                      showModal();
+                      dispatch(getExperienceEdit(props.data._id, userID));
+                    }}
+                    className="experice-icon"
+                  />
                 ) : (
                   ""
                 )}
@@ -56,7 +63,7 @@ const ExperienceCard = (props) => {
             <p>{props.data.description}</p>
           </Card.Body>
           <Card.Footer>
-            {user.username === props.data.username ? (
+            {user._id === props.data._id ? (
               <Button
                 variant="danger"
                 onClick={() => {

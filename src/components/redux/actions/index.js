@@ -183,14 +183,14 @@ export const getExperienceAction = (userid) => {
   return async (dispatch, getState) => {
     try {
       let response = await fetch(
-        process.env.REACT_APP_URL + "/63ce8aa4e2adac708d6585d8/experiences",
+        process.env.REACT_APP_BE_PROD_URL + `/users/${userid}/experiences`,
         options
       );
       if (response.ok) {
         let fetchedData = await response.json();
         dispatch({
           type: GET_EXPERIENCE_DETAILS,
-          payload: fetchedData,
+          payload: fetchedData.experiences,
         });
       } else {
         console.log("error fetching experiences");
@@ -205,7 +205,7 @@ export const getExperienceOtherAction = (userid) => {
   return async (dispatch, getState) => {
     try {
       let response = await fetch(
-        process.env.REACT_APP_URL + "/63ce8aa4e2adac708d6585d8/experiences",
+        process.env.REACT_APP_BE_PROD_URL + `/users/${userid}/experiences`,
         options
       );
       if (response.ok) {
@@ -235,9 +235,9 @@ export const postExperienceAction = (experience, userid) => {
   };
   return async (dispatch) => {
     try {
-      console.log(process.env.REACT_APP_URL);
+      console.log(process.env.REACT_APP_BE_PROD_URL);
       let response = await fetch(
-        process.env.REACT_APP_URL + "/63ce8aa4e2adac708d6585d8/experiences",
+        process.env.REACT_APP_BE_PROD_URL + `/users/${userid}/experiences`,
         optionsPost
       );
       if (response.ok) {
@@ -252,7 +252,7 @@ export const postExperienceAction = (experience, userid) => {
   };
 };
 
-export const deleteExperienceAction = (postid, userid) => {
+export const deleteExperienceAction = (experienceId, userid) => {
   const optionsDelete = {
     method: "DELETE",
     headers: {
@@ -264,10 +264,11 @@ export const deleteExperienceAction = (postid, userid) => {
   return async (dispatch) => {
     try {
       let response = await fetch(
-        "https://striveschool-api.herokuapp.com/api/profile/" +
+        process.env.REACT_APP_BE_PROD_URL +
+          "/users/" +
           userid +
           "/experiences/" +
-          postid,
+          experienceId,
         optionsDelete
       );
       if (response.ok) {
