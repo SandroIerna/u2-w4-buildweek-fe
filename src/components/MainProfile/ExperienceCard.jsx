@@ -39,7 +39,7 @@ const ExperienceCard = (props) => {
             <p>
               <span className="font-weight-bold" style={{ fontSize: "25px" }}>
                 {props.data.role}
-                {user.username === props.data.username ? (
+                {user._id === props.data.user_id ? (
                   <BiPencil
                     onClick={() => {
                       showModal();

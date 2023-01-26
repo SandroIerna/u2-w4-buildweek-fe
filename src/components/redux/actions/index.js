@@ -284,7 +284,7 @@ export const getExperienceEdit = (postid, userid) => {
     try {
       let response = await fetch(
         process.env.REACT_APP_BE_PROD_URL +
-          `/users/${userid}/experiences` +
+          `/users/${userid}/experiences/` +
           postid,
         options
       );
@@ -317,7 +317,7 @@ export const editExperienceAction = (postid, userid, data) => {
     try {
       let response = await fetch(
         process.env.REACT_APP_BE_PROD_URL +
-          `/users/${userid}/experiences` +
+          `/users/${userid}/experiences/` +
           postid,
         optionsEdit
       );

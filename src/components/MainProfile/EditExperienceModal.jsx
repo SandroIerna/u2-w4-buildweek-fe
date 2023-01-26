@@ -36,11 +36,11 @@ const EditModal = (props) => {
     setDescription(post.description);
   }, [post]);
 
-//   const formatDate = (d) => new Date(d).toISOString().substring(0, 10);
+  //   const formatDate = (d) => new Date(d).toISOString().substring(0, 10);
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    dispatch(editExperienceAction(post._id, post.user, changeValues));
+    dispatch(editExperienceAction(post._id, post.user_id, changeValues));
   };
 
   return (
@@ -59,7 +59,7 @@ const EditModal = (props) => {
         {/* role, company, startDate, endDate, description, area */}
         <Form
           onSubmit={(e) => {
-            onSubmitHandler(e)
+            onSubmitHandler(e);
             props.hide();
           }}
         >
@@ -97,7 +97,7 @@ const EditModal = (props) => {
             <Form.Label>Start Date</Form.Label>
             <Form.Control
               type="date"
-            //   value={formatDate(startDate)}
+              //   value={formatDate(startDate)}
               onChange={(e) => onChangeHandler(e.target.value, setStartDate)}
             />
           </Form.Group>
@@ -108,7 +108,7 @@ const EditModal = (props) => {
             </Form.Label>
             <Form.Control
               type="date"
-            //   value={endDate ? formatDate(endDate) : ""}
+              //   value={endDate ? formatDate(endDate) : ""}
             />
           </Form.Group>
 
