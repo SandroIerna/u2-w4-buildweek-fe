@@ -92,7 +92,7 @@ const ExperienceCard = (props) => {
                 <Button
                   variant="secondary"
                   onClick={() => {
-                    getCSVFile();
+                    getCSVFile(props.data._id);
                     console.log("hi");
                   }}
                 >
