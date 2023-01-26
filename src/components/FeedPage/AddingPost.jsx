@@ -12,27 +12,80 @@ import { FaPoll } from "react-icons/fa";
 import { GiGlassCelebration } from "react-icons/gi";
 import { BsChatText } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
-import { makePostAction } from "../redux/actions";
+import { getPostsAction } from "../redux/actions/index.js";
 
 const AddingPost = () => {
   const user = useSelector((state) => state.profile.profilename);
+  const posts = useSelector((state) => state.posts.posts);
   const userID = user._id;
+
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
+  const [showImage, setShowImage] = useState(null);
 
   const [post, setPost] = useState("");
-
+  console.log(posts);
   const postToSend = {
     text: post,
+    user: user._id,
   };
 
   const onChangeHandler = (value, fieldToSet) => {
     fieldToSet(value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(makePostAction(postToSend, userID));
+    const makePostAction = async (data, userid) => {
+      const options = {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+
+      try {
+        let response = await fetch(
+          `${process.env.REACT_APP_BE_PROD_URL}/post`,
+          options
+        );
+        if (response.ok) {
+          // console.log(await response.json());
+          const { id } = await response.json();
+          console.log("Posted Successfully!");
+          return id;
+        } else {
+          console.log("Error posting");
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    const newPostId = await makePostAction(postToSend);
+
+    if (showImage !== null && newPostId) {
+      const data = new FormData();
+      data.append("image", showImage);
+
+      const options = {
+        method: "POST",
+        body: data,
+      };
+      try {
+        let response = await fetch(
+          `${process.env.REACT_APP_BE_PROD_URL}/post/${newPostId}`,
+          options
+        );
+        if (response.ok) {
+          dispatch(getPostsAction());
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      dispatch(getPostsAction());
+    }
   };
 
   const handleClose = () => setShow(false);
@@ -110,6 +163,12 @@ const AddingPost = () => {
         </Modal.Body>
         <Modal.Footer className="activity-modal-footer">
           <div className="activity-footer">
+            <form onSubmit={handleSubmit}>
+              <input
+                type="file"
+                onChange={(e) => setShowImage(e.target.files[0])}
+              />
+            </form>
             <MdOutlineInsertPhoto className="activity-footer-icons" />
             <RxVideo className="activity-footer-icons" />
             <GrDocumentText className="activity-footer-icons" />

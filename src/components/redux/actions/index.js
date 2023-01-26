@@ -10,7 +10,6 @@ export const GET_EXPERIENCE_DETAILS_OTHER = "GET_EXPERIENCE_DETAILS_OTHER";
 export const MAKE_POST = "MAKE_POST";
 
 const { REACT_APP_BE_PROD_URL } = process.env;
-const { REACT_APP_POST_ID } = process.env;
 export const getPostsAction = () => {
   const options = {
     headers: {
@@ -333,29 +332,6 @@ export const editExperienceAction = (postid, userid, data) => {
         console.log("ok!");
       } else {
         console.log("error");
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
-};
-
-export const makePostAction = (data, userid) => {
-  const options = {
-    method: "POST",
-    body: JSON.stringify(data),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
-  return async (dispatch, useState) => {
-    try {
-      let response = await fetch(`${REACT_APP_BE_PROD_URL}/post`, options);
-      if (response.ok) {
-        dispatch(getPostsAction());
-        console.log("Posted Successfully!");
-      } else {
-        console.log("Error posting");
       }
     } catch (err) {
       console.log(err);
