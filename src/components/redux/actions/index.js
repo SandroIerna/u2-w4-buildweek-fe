@@ -287,9 +287,8 @@ export const getExperienceEdit = (postid, userid) => {
   return async (dispatch, getState) => {
     try {
       let response = await fetch(
-        "https://striveschool-api.herokuapp.com/api/profile/" +
-          userid +
-          "/experiences/" +
+        process.env.REACT_APP_BE_PROD_URL +
+          `/users/${userid}/experiences` +
           postid,
         options
       );
@@ -321,9 +320,8 @@ export const editExperienceAction = (postid, userid, data) => {
   return async (dispatch) => {
     try {
       let response = await fetch(
-        "https://striveschool-api.herokuapp.com/api/profile/" +
-          userid +
-          "/experiences/" +
+        process.env.REACT_APP_BE_PROD_URL +
+          `/users/${userid}/experiences` +
           postid,
         optionsEdit
       );
