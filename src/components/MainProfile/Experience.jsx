@@ -43,6 +43,7 @@ export default function Experience() {
     endDate: "",
     description: "",
     area: "",
+    user_id: userID,
   });
 
   const onChangeHandler = (value, fieldToSet) => {
