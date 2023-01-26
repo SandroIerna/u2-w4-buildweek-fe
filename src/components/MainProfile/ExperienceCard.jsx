@@ -27,7 +27,8 @@ const ExperienceCard = (props) => {
   const [details, setDetails] = useState([]);
 
   const formatDate = (d) => new Date(d).toISOString().substring(0, 10);
-
+  console.log(user._id);
+  console.log(props.data.user_id);
   useEffect(() => {}, []);
 
   return (
@@ -63,7 +64,7 @@ const ExperienceCard = (props) => {
             <p>{props.data.description}</p>
           </Card.Body>
           <Card.Footer>
-            {user._id === props.data._id ? (
+            {user._id === props.data.user_id ? (
               <Button
                 variant="danger"
                 onClick={() => {

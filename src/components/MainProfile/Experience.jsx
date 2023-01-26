@@ -35,7 +35,6 @@ export default function Experience() {
     [userID],
     [experiences]
   );
-
   const [experience, setExperience] = useState({
     role: "",
     company: "",
@@ -43,6 +42,7 @@ export default function Experience() {
     endDate: "",
     description: "",
     area: "",
+    user_id: userID,
   });
 
   const onChangeHandler = (value, fieldToSet) => {
