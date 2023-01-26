@@ -12,7 +12,10 @@ import { BiPencil, BiBuildings } from "react-icons/bi";
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import { useEffect } from "react";
-import { getExperienceActionOther, getExperienceOtherAction } from "../redux/actions";
+import {
+  getExperienceActionOther,
+  getExperienceOtherAction,
+} from "../redux/actions";
 import { postExperienceAction } from "../redux/actions";
 import ExperienceCard from "./ExperienceCard";
 
@@ -22,7 +25,9 @@ export default function ExperienceOther() {
   const [showModal, setModal] = useState(false);
   const user = useSelector((state) => state.profile.otherUser);
   const userID = user._id;
-  const experiences = useSelector((state) => state.profile.otherExperience);
+  const experiences = useSelector(
+    (state) => state.profile.otherExperience.experiences
+  );
 
   useEffect(() => {
     dispatch(getExperienceOtherAction(userID));
@@ -66,7 +71,6 @@ export default function ExperienceOther() {
             <div className="activity-followers">
               <h2 className="mb-0">Experience</h2>
             </div>
-
           </Card.Title>
           <div className="experience-note">
             <div className="experience">
@@ -75,6 +79,7 @@ export default function ExperienceOther() {
             <Container fluid>
               <ListGroup variant="flush">
                 {experiences &&
+                  experiences.length > 0 &&
                   experiences.map((i) => (
                     <ExperienceCard data={i} key={i._id} />
                   ))}
