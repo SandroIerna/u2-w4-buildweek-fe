@@ -101,6 +101,7 @@ const Postcard = (props) => {
                       : "https://picsum.photos/400/400"
                   }
                   className="comment-image img-fluid"
+                  alt=""
                 />
               </span>
             </Row>

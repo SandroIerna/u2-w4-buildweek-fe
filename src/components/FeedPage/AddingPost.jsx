@@ -17,7 +17,7 @@ import { getPostsAction } from "../redux/actions/index.js";
 const AddingPost = () => {
   const user = useSelector((state) => state.profile.profilename);
   const posts = useSelector((state) => state.posts.posts);
-  const userID = user._id;
+  const userid = user._id;
 
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
