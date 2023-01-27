@@ -12,12 +12,16 @@ import { AiOutlineLike } from "react-icons/ai";
 import { BsChatText } from "react-icons/bs";
 import { BiRepost } from "react-icons/bi";
 import { TbSend } from "react-icons/tb";
-import { deletePostAction } from "../redux/actions";
+import {
+  deletePostAction,
+  getOtherProfile,
+  getProfile,
+} from "../redux/actions";
 import { HiDotsHorizontal } from "react-icons/hi";
 import { useDispatch, useSelector } from "react-redux";
 import { BsPencilFill } from "react-icons/bs";
 import { BsFillTrashFill } from "react-icons/bs";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PostEditModal from "./PostEditModal";
 
 const Postcard = (props) => {
@@ -30,6 +34,9 @@ const Postcard = (props) => {
   const user = useSelector((state) => state.profile.profilename);
   const userID = user._id;
   const formatDate = (d) => new Date(d).toISOString().substring(0, 10);
+
+  console.log("khdsfhds", props.data);
+
   if (props.data.user !== null) {
     return (
       <>
@@ -37,10 +44,25 @@ const Postcard = (props) => {
           <Row>
             <div className="d-flex">
               <div className="comment-img-con">
-                <img
-                  src={props.data.user.image ? props.data.user.image : ""}
-                  alt="user"
-                />
+                {props.data.user._id === process.env.REACT_APP_PROFILE_ID ? (
+                  <Link to={"/profile/me"}>
+                    <img
+                      src={
+                        "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/1200px-Default_pfp.svg.png"
+                      }
+                      alt="user"
+                    />
+                  </Link>
+                ) : (
+                  <Link to={"/profile/" + props.data.user._id}>
+                    <img
+                      src={
+                        "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/1200px-Default_pfp.svg.png"
+                      }
+                      alt="user"
+                    />
+                  </Link>
+                )}
               </div>
               <Col>
                 <Row className="ml-1">
@@ -49,9 +71,16 @@ const Postcard = (props) => {
                       style={{ fontSize: "0.8rem" }}
                       className="font-weight-bold"
                     >
-                      <Link to={"/profile/" + props.data.user._id}>
-                        {props.data.user.name} {props.data.user.surname}
-                      </Link>
+                      {props.data.user._id ===
+                      process.env.REACT_APP_PROFILE_ID ? (
+                        <Link to={"/profile/me"}>
+                          {props.data.user.name} {props.data.user.surname}
+                        </Link>
+                      ) : (
+                        <Link to={"/profile/" + props.data.user._id}>
+                          {props.data.user.name} {props.data.user.surname}
+                        </Link>
+                      )}
                     </span>
                   </div>
                   <div className="comment-subheader">

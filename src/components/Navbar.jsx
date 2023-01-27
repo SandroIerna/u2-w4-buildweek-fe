@@ -117,7 +117,7 @@ const NavbarLinked = () => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ml-auto">
               <Nav.Link
-                href="#home"
+                href="/"
                 className="d-flex flex-column align-items-center"
               >
                 <div>
@@ -179,9 +179,30 @@ const NavbarLinked = () => {
                   title="Me"
                   id="basic-nav-dropdown"
                   style={{ fontSize: "13px" }}
+                  align="end"
                 >
                   <NavDropdown.Item>
-                    <Link to="/profile/me">My Profile</Link>
+                    <Link to="/profile/me">
+                      <div className="d-flex align-items-center">
+                        <div>
+                          <img
+                            src={user.image}
+                            alt="..."
+                            style={{
+                              width: "35px",
+                              height: "35px",
+                              borderRadius: "50%",
+                              padding: "0",
+                            }}
+                            className="align-self-center mr-2"
+                          />
+                        </div>
+                        <div>
+                          <div>{`${user.name} ${user.surname}`}</div>
+                          <div>{user.title}</div>
+                        </div>
+                      </div>
+                    </Link>
                   </NavDropdown.Item>
                 </NavDropdown>
               </div>
