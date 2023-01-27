@@ -21,7 +21,7 @@ const Mainfeed = () => {
     <Container className="main-con">
       <Row className="main-con-row">
         <Col md={2}>
-            <MainPageProfile />
+          <MainPageProfile />
         </Col>
         <Col md={4} className="mx-5">
           <AddingPost />
