@@ -4,12 +4,13 @@ import { BsInfoSquareFill } from "react-icons/bs";
 import { BiChevronDown } from "react-icons/bi";
 import "../CssFolder/homepage.css";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 export default function RightHompageSidebar() {
   const profileDetails = useSelector((state) => state.profile.profilename);
   return (
     <>
-      <Card >
+      <Card>
         <Card.Body>
           <Card.Title className="d-flex justify-content-between">
             <h2 className="mb-0">LinkedIn News</h2>
@@ -67,11 +68,13 @@ export default function RightHompageSidebar() {
           </h2>
           <div className="rightside-image ">
             <div>
-              <img
-                src={profileDetails.image}
-                alt="profile image"
-                className="righthome-image"
-              />
+              <Link to={"/profile/" + profileDetails._id}>
+                <img
+                  src={profileDetails.image}
+                  alt="profileImage"
+                  className="righthome-image"
+                />
+              </Link>
             </div>
             <Card.Img
               variant="top"
