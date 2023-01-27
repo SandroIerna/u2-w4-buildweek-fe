@@ -35,7 +35,7 @@ const Postcard = (props) => {
   const userID = user._id;
   const formatDate = (d) => new Date(d).toISOString().substring(0, 10);
 
-  console.log("khdsfhds", props.data);
+  console.log("khdsfhds", props.data.user);
 
   if (props.data.user !== null) {
     return (
@@ -47,9 +47,7 @@ const Postcard = (props) => {
                 {props.data.user._id === process.env.REACT_APP_PROFILE_ID ? (
                   <Link to={"/profile/me"}>
                     <img
-                      src={
-                        "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/1200px-Default_pfp.svg.png"
-                      }
+                      src={props.data.user.image ? props.data.user.image : ""}
                       alt="user"
                     />
                   </Link>

@@ -63,6 +63,7 @@ const AddingPost = () => {
       }
     };
     const newPostId = await makePostAction(postToSend);
+    console.log(newPostId);
 
     if (showImage !== null && newPostId) {
       const data = new FormData();
@@ -104,7 +105,7 @@ const AddingPost = () => {
       <div className="post-card-homepage">
         <div>
           {" "}
-          <img src={user.image} alt="profileimage" className="post-pic-main" />
+          {/* <img src={user.image} alt="profileimage" className="post-pic-main" /> */}
         </div>
         <div>
           <Button
